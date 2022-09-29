@@ -13,6 +13,8 @@ RUN echo "deb https://mirror.iranserver.com/ubuntu focal main restricted univers
 RUN echo "deb https://mirror.iranserver.com/ubuntu focal-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN echo "deb https://mirror.iranserver.com/ubuntu focal-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN apt update
+RUN apt upgrade
 RUN apt install -y curl
+RUN curl --version
 RUN mkdir /app
 WORKDIR /app
