@@ -9,12 +9,24 @@
 #CMD bash
 FROM registry.greenwebplus.com/docker/docker/library/mongo:latest
 #RUN echo http://mirror.arvancloud.com/alpine/v3.16/main > /etc/apk/repositories
-RUN echo "deb https://mirror.iranserver.com/ubuntu focal main restricted universe multiverse" | tee -a /etc/apt/sources.list
-RUN echo "deb https://mirror.iranserver.com/ubuntu focal-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
-RUN echo "deb https://mirror.iranserver.com/ubuntu focal-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
+#RUN echo "deb https://mirror.iranserver.com/ubuntu focal main restricted universe multiverse" | tee -a /etc/apt/sources.list
+#RUN echo "deb https://mirror.iranserver.com/ubuntu focal-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
+#RUN echo "deb https://mirror.iranserver.com/ubuntu focal-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN apt update
-RUN apt upgrade -y
-RUN apt install -y curl
+
+RUN apt install -y wget
+RUN wget https://curl.se/download/curl-7.85.0.tar.gz
+RUN tar xvfz curl-7.85.0.tar.gz
+RUN cd curl-7.85.0
+RUN mkdir /home/curl
+RUN apt install -y binutils
+RUN apt-get install -y build-essential
+RUN ./configure --prefix=$HOME/curl --without-ssl
+RUN make
+RUN make install
+
+#RUN apt upgrade -y
+#RUN apt install -y curl
 RUN curl --version
 RUN mkdir /app
 WORKDIR /app
