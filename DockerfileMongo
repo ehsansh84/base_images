@@ -8,7 +8,11 @@
 #RUN apt-get install -y mongodb
 #CMD bash
 FROM registry.greenwebplus.com/docker/docker/library/mongo:latest
-RUN mkdir /app
+#RUN echo http://mirror.arvancloud.com/alpine/v3.16/main > /etc/apk/repositories
+RUN echo "deb https://mirror.iranserver.com/ubuntu focal main restricted universe multiverse" | tee -a /etc/apt/sources.list
+RUN echo "deb https://mirror.iranserver.com/ubuntu focal-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
+RUN echo "deb https://mirror.iranserver.com/ubuntu focal-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN apt update
 RUN apt install -y curl
+RUN mkdir /app
 WORKDIR /app
