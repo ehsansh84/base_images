@@ -7,7 +7,7 @@
 #    apt-get update
 #RUN apt-get install -y mongodb
 #CMD bash
-FROM registry.greenwebplus.com/docker/docker/library/debian:latest
+FROM registry.greenwebplus.com/docker/docker/library/mongo:latest
 RUN mkdir /app
 RUN apt update
 RUN apt install -y curl
