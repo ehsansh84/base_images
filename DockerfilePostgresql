@@ -3,4 +3,3 @@ RUN apk update &&\
     apk add curl --no-cache postgresql-client &&\
     mkdir /app
 WORKDIR /app
-COPY backup-harbor-db.sh /app
