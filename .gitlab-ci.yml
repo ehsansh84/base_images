@@ -1,0 +1,27 @@
+stages:
+  - build:pgbackup
+  - build:mongobackup
+pgbackup:
+  stage: build:pgbackup
+  image:
+    name: registry.greenwebplus.com/public/docker-yq-git:1
+  before_script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
+  script:
+    - docker build -t registry.greenwebplus.com/admin-kubernetes/postgresbackup:latest -f DockerfilePostgresql .
+    - docker push $IMAGE_NAME
+  rules:
+    - changes:
+      - DockerfilePostgresql
+mongobackup:
+  stage: build:mongobackup
+  image:
+    name: registry.greenwebplus.com/public/docker-yq-git:1
+  before_script:
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
+  script:
+    - docker build -t registry.greenwebplus.com/admin-kubernetes/mongodbbackup:latest -f DockerfileMongo .
+    - docker push $IMAGE_NAME
+  rules:
+    - changes:
+      - DockerfileMongo
