@@ -1,0 +1,9 @@
+FROM registry.greenwebplus.com/docker/docker/library/gcc
+RUN mkdir /app
+WORKDIR /app
+#RUN wget https://curl.se/download/curl-7.85.0.tar.gz --no-check-certificate
+COPY curl-7.85.0.tar.gz .
+RUN tar xvfz curl-7.85.0.tar.gz
+RUN curl-7.85.0/configure --prefix=$HOME/curl --without-ssl
+RUN make
+RUN make install
