@@ -30,3 +30,4 @@ mongobackup:
   rules:
     - changes:
       - DockerfileMongo
+      - build-curl/DockerfileGCC
