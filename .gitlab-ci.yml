@@ -1,6 +1,6 @@
 stages:
-  - build:pgbackup
   - build:mongobackup
+  - build:pgbackup
 pgbackup:
   stage: build:pgbackup
   image:
