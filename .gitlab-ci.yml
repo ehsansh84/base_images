@@ -19,7 +19,7 @@ mongobackup:
   image:
     name: registry.greenwebplus.com/public/docker-yq-git:1
   before_script:
-    - docker build -t curl -f DockerfileGCC .
+    - docker build -t curl -f build-curl/DockerfileGCC .
     - export IMAGE_ID=$(docker create gcc)
     - docker cp $IMAGE_ID:/root/curl/bin/curl .
     - export IMAGE_NAME=registry.greenwebplus.com/admin-kubernetes/mongodbbackup:latest
