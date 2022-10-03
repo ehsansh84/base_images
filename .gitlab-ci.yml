@@ -1,6 +1,7 @@
 stages:
   - build:mongobackup
   - build:pgbackup
+  - build:PythonHelmKubectl
 pgbackup:
   stage: build:pgbackup
   image:
@@ -31,3 +32,16 @@ mongobackup:
     - changes:
       - DockerfileMongo
       - build-curl/DockerfileGCC
+PythonHelmKubectl:
+  stage: build:PythonHelmKubectl
+  image:
+    name: registry.greenwebplus.com/public/docker-yq-git:1
+  before_script:
+    - export IMAGE_NAME=registry.greenwebplus.com/admin-kubernetes/PythonHelmKubectl:latest
+    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
+  script:
+    - docker build -t PythonHelmKubectl -f DockerfilePythonHelmKubectl .
+    - docker push $IMAGE_NAME
+  rules:
+    - changes:
+      - DockerfilePythonHelmKubectl
