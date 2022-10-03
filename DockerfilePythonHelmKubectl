@@ -8,3 +8,4 @@ RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 RUN chmod 700 get_helm.sh
 RUN sh ./get_helm.sh
+RUN apk add mysql-client
