@@ -1,6 +1,8 @@
 FROM python:3.7-alpine
 RUN mkdir /app
 WORKDIR /app
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
 RUN apk update
 RUN apk add vim curl openssl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"

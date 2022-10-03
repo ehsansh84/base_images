@@ -40,9 +40,9 @@ PythonHelmKubectl:
     - export IMAGE_NAME=registry.greenwebplus.com/admin-kubernetes/pythonhelmkubectl:latest
     - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
   script:
-    - docker build -t $IMAGE_NAME -f DockerfilePythonHelmKubectl .
+    - docker build -t $IMAGE_NAME -f dbman/DockerfilePythonHelmKubectl .
     - docker push $IMAGE_NAME
   rules:
     - changes:
-      - DockerfilePythonHelmKubectl
+      - dbman/DockerfilePythonHelmKubectl
 
