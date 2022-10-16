@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'master'
+    paths:
+    - DockerfileNewman
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -30,11 +32,6 @@ jobs:
           context: DockerfileNewman
           load: true
           tags: shirzadi/newman:latest
-          files: |
-            DockerfileNewman
       -
         name: Push it!
         run: docker push shirzadi/newman:latest
-        with:
-          files: |
-            DockerfileNewman
