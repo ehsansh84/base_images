@@ -3,3 +3,4 @@ RUN apk update &&\
     apk add curl --no-cache postgresql-client &&\
     mkdir /app
 WORKDIR /app
+
