@@ -29,9 +29,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./DockerfileNewman
+          context: .
           load: true
           tags: shirzadi/newman:latest
+          file: DockerfileNewman
       -
         name: Push it!
         run: docker push shirzadi/newman:latest
